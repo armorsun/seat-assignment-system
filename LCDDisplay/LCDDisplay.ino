@@ -8,39 +8,66 @@
 //SCL - ANALOG pin 5
 
 int seatStatus = -1;  //avaliable
-bool LCDpowered = 0;
+int Time = 0;
 LiquidCrystal_I2C lcd(0x27,20,4);  // set the LCD address to 0x27 for a 16 chars and 2 line display  
 
 void setup()
 {  
-  Serial.begin(9600);
-  
-
-//  LiquidCrystal_I2C lcd(0x27,20,4);  // set the LCD address to 0x27 for a 16 chars and 2 line display  
-  lcd.init();
-  lcd.backlight();
-//  LiquidCrystal_I2C& a = lcd;
-  
-  Serial.println("testing seatStatus = -1...");
-  lcddisplay();
-  delay('3000');
-  
-  Serial.println("testing seatStatus = 1...");
-  seatStatus = 1; //occupied
-  lcddisplay();
-  delay('3000');
-
-  Serial.println("testing seatStatus = 0...");
-  seatStatus = 0; //temperarily leave
-  lcddisplay();
-  delay('3000');
-  Serial.println("done testing!");
+//  Serial.begin(9600);
+//  
+//  lcd.init();
+//  lcd.backlight();
+//  
+//  Serial.println("testing seatStatus = -1...");
+//  lcddisplay();
+//  delay('20');
+//  
+//  Serial.println("testing seatStatus = 1...");
+//  seatStatus = 1; //occupied
+//  lcddisplay();
+//  delay('20');
+//
+//  Serial.println("testing seatStatus = 0...");
+//  seatStatus = 0; //temperarily leave
+//
+//  for(int i=0; i<=10; i++){
+//    Time = i;
+//    lcddisplay();
+//    delay('10');
+//  }
+//  
+//  Serial.println("done testing!");
 
 }
 
 
 void loop()
 {
+  Serial.begin(9600);
+  
+  lcd.init();
+  lcd.backlight();
+  
+  Serial.println("testing seatStatus = -1...");
+  lcddisplay();
+  delay('20');
+  
+  Serial.println("testing seatStatus = 1...");
+  seatStatus = 1; //occupied
+  lcddisplay();
+  delay('20');
+
+  Serial.println("testing seatStatus = 0...");
+  seatStatus = 0; //temperarily leave
+
+  for(int i=0; i<=10; i++){
+    Time = i;
+    lcddisplay();
+    delay('10');
+  }
+  
+  Serial.println("done testing!");
+  
 }
 
 
