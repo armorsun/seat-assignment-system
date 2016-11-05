@@ -1,9 +1,15 @@
+#include "lcddisplay.h"
+#include "checkCardPlaced.h"
+#include "LEDControl.h"
+
 int seatStatus//3 status: -1=avaliable, 0=temporarily out, 1=occupied (LEDID: -1=green, 0=blue, 1=red(occupied))
 int Time
 String cardID
+LiquidCrystal_I2C lcd(0x27,20,4);
 
 void setup(){
-    
+    lcd.init(); 
+    lcd.backlight();
 }
 
 void loop(){
