@@ -7,13 +7,22 @@ void lcddisplay(){
 
   extern int seatStatus;  // access to global variable
   extern LiquidCrystal_I2C lcd;
-  extern int Time;
+  extern int timeReamined;
+  extern int action;
   
 //  LiquidCrystal_I2C lcd(0x27,20,4);  // set the LCD address to 0x27 for a 16 chars and 2 line display  
 //  lcd.init();
 //  lcd.backlight();
 
-  if(seatStatus == -1){
+  if(action == 4){
+
+    lcd.clear();
+    lcd.setCursor(0,0);
+    lcd.print("[Error]");
+    lcd.setCursor(0,1);
+    lcd.print("Invaid ID card");
+    
+  }else if(seatStatus == -1){
 
     lcd.clear();
     lcd.setCursor(0,0);
@@ -35,12 +44,12 @@ void lcddisplay(){
     lcd.setCursor(0,0);
     lcd.print("[Away]");
     lcd.setCursor(0,1);
-    int remainSec = (1800-Time)%60;
-    int remainMin = ((1800-Time) - remainSec)/60;
+    int remainedSec = timeReamined%60;
+    int remainedMin = (timeReamined - remainedSec)/60;
     lcd.print("Reset in ");
-    lcd.print(remainMin);
+    lcd.print(remainedMin);
     lcd.print(":");
-    lcd.print(remainSec);
+    lcd.print(remainedSec);
     
   }
   
