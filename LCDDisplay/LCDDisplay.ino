@@ -13,36 +13,6 @@ LiquidCrystal_I2C lcd(0x27,20,4);  // set the LCD address to 0x27 for a 16 chars
 
 void setup()
 {  
-//  Serial.begin(9600);
-//  
-//  lcd.init();
-//  lcd.backlight();
-//  
-//  Serial.println("testing seatStatus = -1...");
-//  lcddisplay();
-//  delay('20');
-//  
-//  Serial.println("testing seatStatus = 1...");
-//  seatStatus = 1; //occupied
-//  lcddisplay();
-//  delay('20');
-//
-//  Serial.println("testing seatStatus = 0...");
-//  seatStatus = 0; //temperarily leave
-//
-//  for(int i=0; i<=10; i++){
-//    Time = i;
-//    lcddisplay();
-//    delay('10');
-//  }
-//  
-//  Serial.println("done testing!");
-
-}
-
-
-void loop()
-{
   Serial.begin(9600);
   
   lcd.init();
@@ -50,24 +20,29 @@ void loop()
   
   Serial.println("testing seatStatus = -1...");
   lcddisplay();
-  delay('20');
+  delay(3000);
   
   Serial.println("testing seatStatus = 1...");
   seatStatus = 1; //occupied
   lcddisplay();
-  delay('20');
+  delay(3000);
 
   Serial.println("testing seatStatus = 0...");
   seatStatus = 0; //temperarily leave
 
-  for(int i=0; i<=10; i++){
+  for(int i=0; i<=1800; i++){
     Time = i;
-    lcddisplay();
-    delay('10');
+    lcddisplay(); // update LCD by inspecting Time 
+    delay(1000);
   }
   
   Serial.println("done testing!");
-  
+
+}
+
+
+void loop()
+{
 }
 
 

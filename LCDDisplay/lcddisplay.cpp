@@ -19,7 +19,7 @@ void lcddisplay(){
     lcd.setCursor(0,0);
     lcd.print("[Avaliable]");
     lcd.setCursor(0,1);
-    lcd.print("insert ID card");
+    lcd.print("Insert ID card");
     
   }else if(seatStatus == 1) {
 
@@ -27,15 +27,20 @@ void lcddisplay(){
     lcd.setCursor(0,0);
     lcd.print("[Occupied]");
     lcd.setCursor(0,1);
-    lcd.print("insert ID card");
+    lcd.print("Report if empty");
     
   }else if(seatStatus == 0) {
 
     lcd.clear();
     lcd.setCursor(0,0);
-    lcd.print("[away]");
+    lcd.print("[Away]");
     lcd.setCursor(0,1);
-    lcd.print(Time);
+    int remainSec = (1800-Time)%60;
+    int remainMin = ((1800-Time) - remainSec)/60;
+    lcd.print("Reset in ");
+    lcd.print(remainMin);
+    lcd.print(":");
+    lcd.print(remainSec);
     
   }
   
