@@ -1,7 +1,3 @@
-#define R_LED pin
-#define G_LED pin
-#define B_LED pin
-
 int seatStatus//3 status: -1=avaliable, 0=temporarily out, 1=occupied (LEDID: -1=green, 0=blue, 1=red(occupied))
 int Time
 String cardID
