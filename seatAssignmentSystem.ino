@@ -2,11 +2,11 @@
 #include "checkCardPlaced.h"
 #include "LEDControl.h"
 
-int seatStatus//3 status: -1=avaliable, 0=temporarily out, 1=occupied (LEDID: -1=green, 0=blue, 1=red(occupied))
-int Time
-String cardID
+int seatStatus;//3 status: -1=avaliable, 0=temporarily out, 1=occupied (LEDID: -1=green, 0=blue, 1=red(occupied))
+int timeReamined;
+String cardID;
 LiquidCrystal_I2C lcd(0x27,20,4);
-int action  //4 action, anyone can add, if needed
+int action;  //4 action, anyone can add, if needed
             //action=1, display avaliable and green light.
             //action=2, display temporarily out and blue light.
             //action=3, display occupied and red.
@@ -18,19 +18,25 @@ void setup(){
 }
 
 void loop(){
-    void checkCardPlaced()//using photointerupter to detect if a card is placed, call readCardData(), if not, check seatStatus, if occupied, call resetAll(), if temporarily out, do nothing.
+    checkCardPlaced();//using photointerupter to detect if a card is placed, if yes call readCardData(), 
+                          //if not, do nothing.
 
+    checkBtnPressed();//check seatStatus first, 
+                            //if seat avaliable or temporarily out, do nothing, 
+                            //if occupied, start countdown(e.g.  set timeRemained=1800), turn on blue LED, set seatStatus temporarily out, uploadData().
+                           
 }
 
-void LCDDisplay(){}
+void LCDDisplay(){}   //check action
 
-void readCardData(){}//check seatStatus, if not avaliable, flash red light and do nothing, if avaliable, check card is valid or not, is the same or not, if not, flash Red LED, if yes, turn on Green LED, call uploadData() , stop countDown(reset), set seatStatus occupied,;
+void readCardData(){} //check seatStatus, 
+                          //if not avaliable, flash red light and do nothing, set action=4 
+                          //if avaliable, check card is valid or not, is the same or not, 
+                                    //if not, flash Red LED, set action=4
+                                    //if yes, turn on green LED, call uploadData() , set timeRemaind=0, set seatStatus=occupied, set action=3
 
-void LEDControl(int LEDID, int action){}//turn on,turn off, flash...., LEDID: -1=green, 0=blue, 1=red(occupied)
-//void countDown(bool reset){}//if time's up call resetAll(), uploadData().
+void LEDControl(int LEDID){}//turn on,turn off, flash...., LEDID: -1=green, 0=blue, 1=red, check action
 
-void uploadData()//upload card, time, status, using json format.
+void uploadData(){}//upload card, timeRemained, status, using json format. 
 
-void checkBtnPressed(){}//check seatStatus first, if seat avaliable or temporarily out, do nothing, if occupied, call countDown(), turn on blue LED, set seatStatus temporarily out, upload.
-
-void resetAll(){}
+void resetAll(){}//seatStatus=-1, action=1, timeRemained=0, LCDDisplay, LEDControl, uploadData
