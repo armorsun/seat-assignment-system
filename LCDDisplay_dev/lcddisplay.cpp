@@ -22,7 +22,7 @@ void lcddisplay(){
     lcd.setCursor(0,1);
     lcd.print("Invaid ID card");
     
-  }else if(seatStatus == -1){
+  }else if(action == 1){
 
     lcd.clear();
     lcd.setCursor(0,0);
@@ -30,7 +30,7 @@ void lcddisplay(){
     lcd.setCursor(0,1);
     lcd.print("Insert ID card");
     
-  }else if(seatStatus == 1) {
+  }else if(action == 3) {
 
     lcd.clear();
     lcd.setCursor(0,0);
@@ -38,7 +38,7 @@ void lcddisplay(){
     lcd.setCursor(0,1);
     lcd.print("Report if empty");
     
-  }else if(seatStatus == 0) {
+  }else if(action == 2) {
 
     lcd.clear();
     lcd.setCursor(0,0);
