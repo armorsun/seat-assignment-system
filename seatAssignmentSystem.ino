@@ -6,6 +6,11 @@ int seatStatus//3 status: -1=avaliable, 0=temporarily out, 1=occupied (LEDID: -1
 int Time
 String cardID
 LiquidCrystal_I2C lcd(0x27,20,4);
+int action  //4 action, anyone can add, if needed
+            //display avaliable and green light.
+            //display temporarily out and blue light.
+            //display occupied and red.
+            //display invalide and flash red light.
 
 void setup(){
     lcd.init(); 
@@ -13,12 +18,11 @@ void setup(){
 }
 
 void loop(){
+    void checkCardPlaced()//using photointerupter to detect if a card is placed, call readCardData(), if not, check seatStatus, if occupied, call resetAll(), if temporarily out, do nothing.
 
 }
 
 void LCDDisplay(){}
-
-void checkCardPlaced()//using photointerupter to detect if a card is placed, call readCardData(), if not, check seatStatus, if occupied, call resetAll(), if temporarily out, do nothing.
 
 void readCardData(){}//check seatStatus, if not avaliable, flash red light and do nothing, if avaliable, check card is valid or not, is the same or not, if not, flash Red LED, if yes, turn on Green LED, call uploadData() , stop countDown(reset), set seatStatus occupied,;
 
