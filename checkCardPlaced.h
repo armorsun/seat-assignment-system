@@ -1,5 +1,5 @@
-#ifndef LEDControl_h
-#define LEDControl_h
+#ifndef checkCardPlaced_h
+#define checkCardPlaced_h
 
 void checkCardPlaced();
 
