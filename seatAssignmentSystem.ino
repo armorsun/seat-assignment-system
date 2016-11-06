@@ -4,6 +4,8 @@
 #include "checkBtnPressed.h"
 #include "resetAll.h"
 #include "uploadData.h"//empty now!
+#include <Wire.h> 
+#include <LiquidCrystal_I2C.h>
 
 int seatStatus;//3 status: -1=avaliable, 0=temporarily out, 1=occupied (LEDID: -1=green, 0=blue, 1=red(occupied))
 int timeRemained;
@@ -30,16 +32,17 @@ void loop(){
                            
 }
 
-void LCDDisplay(){}   //check action
+//yuda: Comment out following APIs to prevent multiple definition
+//void LCDDisplay(){}   //check action
 
-void readCardData(){} //check seatStatus, 
+//void readCardData(){} //check seatStatus, 
                           //if not avaliable, flash red light and do nothing, set action=4 
                           //if avaliable, check card is valid or not, is the same or not, 
                                     //if not, flash Red LED, set action=4
                                     //if yes, turn on green LED, call uploadData() , set timeRemaind=0, set seatStatus=occupied, set action=3
 
-void LEDControl(int LEDID){}//turn on,turn off, flash...., LEDID: -1=green, 0=blue, 1=red, check action
+//void LEDControl(int LEDID){}//turn on,turn off, flash...., LEDID: -1=green, 0=blue, 1=red, check action
 
-void uploadData(){}//upload card, timeRemained, status, using json format. 
+//void uploadData(){}//upload card, timeRemained, status, using json format. 
 
-void resetAll(){}//seatStatus=-1, action=1, timeRemained=0, LCDDisplay, LEDControl, uploadData
+//void resetAll(){}//seatStatus=-1, action=1, timeRemained=0, LCDDisplay, LEDControl, uploadData

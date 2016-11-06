@@ -2,6 +2,10 @@
 
 #include "checkCardPlaced.h"
 #include "Arduino.h"
+#include "readCardData.h"
+#include "resetAll.h"
+
+extern int seatStatus;
 
 void checkCardPlaced() {
 
