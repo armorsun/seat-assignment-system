@@ -2,6 +2,8 @@
 #include "checkCardPlaced.h"
 #include "LEDControl.h"
 #include "checkBtnPressed.h"
+#include "resetAll.h"
+#include "uploadData.h"//empty now!
 
 int seatStatus;//3 status: -1=avaliable, 0=temporarily out, 1=occupied (LEDID: -1=green, 0=blue, 1=red(occupied))
 int timeRemained;
