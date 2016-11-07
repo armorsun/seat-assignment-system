@@ -9,7 +9,9 @@ extern int seatStatus;
 
 void checkCardPlaced() {
 
-pinMode(PhotoInterrupter,INPUT);
+  extern int seatStatus; //access to global variable.
+  
+  pinMode(PhotoInterrupter,INPUT);
 
 //Serial.println(digitalRead(PhotoInterrupter)); // <- for debuging 
 //Resistance of LED should be about 330Ohm.
@@ -17,11 +19,11 @@ pinMode(PhotoInterrupter,INPUT);
 
   if(digitalRead(PhotoInterrupter)==0) //placed
   {
-    readCardData();
+//  readCardData();
   }
 
   if(digitalRead(PhotoInterrupter)==1) //not placed
   {
-    if( seatStatus ==  1 ) {resetAll();} // occupied
+//  if( seatStatus ==  1 ) {resetAll();} // occupied
   }
 }
