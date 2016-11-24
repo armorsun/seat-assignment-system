@@ -20,7 +20,7 @@ void lcddisplay(){
     lcd.setCursor(0,0);
     lcd.print("[Error]");
     lcd.setCursor(0,1);
-    lcd.print("Invaid ID card");
+    lcd.print("Invalid ID card");
     
   }else if(action == 1){
 

@@ -36,21 +36,33 @@ void readCardData(){
        //idRead[] = idStored[]; //must ensure the array length
        action = 1 ;
        lcddisplay();
-       /////// maybe report to the management system.
+       uploadData(); // report the system
+       LEDControl(1,2); // 
+       seatStatus = -1 ; // the state changed into occupied
       else // temporary out.
       {
-      
       /* pseudocode
-      if (rfidRead != rfidStored ) { LEDControl(1,1); }
-      // not right card.flash red light and do nothing.
-      */
-        LEDControl(-1,1);
-        uploadData();
-        //countDown(reset);
-        
-        seatStatus = -1 ; 
+      if (rfidRead != rfidStored ) { // not right card.flash red light and do nothing.
+        LEDControl(1,1); 
+        action = 4;
+        lcddisplay();
       }
-    ///////check card is valid or not first./////// 
+      
+      else { // right card  
+        // action = 5? (lcddisplay("Right ID card");) delay(2000);
+        seatStatus = -1 ; // the state changed into occupied
+        action = 3;
+        lcddisplay();
+        LEDControl(1,2); // red light 
+        uploadData();
+      }
+      */
+      /*
+      1. action
+      2. lcddisplay
+      3. LEDcontrol
+      4. uploadData.
+     */ 
     } 
   }
 }
