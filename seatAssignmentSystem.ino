@@ -20,6 +20,8 @@ int action;  //4 action, anyone can add, if needed
 void setup(){
     lcd.init(); 
     lcd.backlight();
+    SPI.begin(); // for RFID initialization
+    mfrc522.PCD_Init(); // for RFID initialization
 }
 
 void loop(){
