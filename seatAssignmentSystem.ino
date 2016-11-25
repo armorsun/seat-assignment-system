@@ -11,11 +11,17 @@ int seatStatus;//3 status: -1=avaliable, 0=temporarily out, 1=occupied (LEDID: -
 int timeRemained;
 String cardID;
 LiquidCrystal_I2C lcd(0x27,20,4);
-int action;  //4 action, anyone can add, if needed
+int action;  //6 action, anyone can add, if needed
             //action=1, display avaliable and green light.
             //action=2, display temporarily out and blue light.
             //action=3, display occupied and red.
-            //action=4, display invalide and flash red light.
+            //action=4, display invalid and flash red light.
+            
+            //action=5, display "Right ID card" when be back.
+            //action=6, display "Card is registered."
+            //action=7, display "NOT Right ID card"
+
+byte UIDStored[4];
 
 void setup(){
     lcd.init(); 
