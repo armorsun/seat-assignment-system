@@ -50,6 +50,10 @@ void setup(){
 }
 
 void loop(){
+  
+  //---Remind that the effect LEDControl(x,2) and lcddisplay are constant.---//
+  //---Remind that the effect LEDControl(x,1) has the function of delaying 0.75s.//
+
     checkCardPlaced();//using photointerupter to detect if a card is placed, if yes call readCardData(), 
                           //if not, do nothing.
 

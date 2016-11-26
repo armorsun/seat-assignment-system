@@ -17,13 +17,8 @@ void setup(){ // in the main program
   
   pinMode(2,OUTPUT);
 }
- 
+// ------------ in the main program ------------//
 void loop() {
-
-    // card proximity = 2.5cm.
-    // check card is valid or not first.
-    // the card validity variable = the card number is read. 
-    // IsNewCardPresent for excatly "new" card.
     
     boolean rfidValid = (mfrc522.PICC_IsNewCardPresent()&&mfrc522.PICC_ReadCardSerial());
     if (rfidValid == true) {
