@@ -14,12 +14,15 @@ void setup(){ // in the main program
   
   SPI.begin(); //initialize SPI
   mfrc522.PCD_Init(); //initialize mfrc522  
+  
+  pinMode(2,OUTPUT);
 }
  
 void loop() {
     // card proximity = 2.5cm.
     // check card is valid or not first.
     // the card validity variable = card exist && the card number is read.
+    delay(1000); // waiting for sensing
     boolean rfidValid = (mfrc522.PICC_IsNewCardPresent() && mfrc522.PICC_ReadCardSerial());
     if (rfidValid == true) {
       // the data structure is "byte".
@@ -46,6 +49,23 @@ void loop() {
         Serial.println(UIDStored[i], HEX);// display UID in 16.
       }
       Serial.println();
-      mfrc522.PICC_HaltA();
+    // mfrc522.PICC_HaltA();
+    digitalWrite(2,LOW);
+    }else {
+    
+     // boolean checkNoCard = (mfrc522.PICC_IsNewCardPresent() && mfrc522.PICC_ReadCardSerial());
+     // if(checkNoCard == true){
+     // Serial.println("Exactly no card.");
+      digitalWrite(2,HIGH); 
+      delay(700);
+      digitalWrite(2,LOW); 
+      delay(700);
+      digitalWrite(2,HIGH); 
+      delay(700);
+      digitalWrite(2,LOW); 
+      delay(700);
+    //}
+    
     } 
+    delay(3000);
 }
