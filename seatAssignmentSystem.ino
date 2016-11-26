@@ -6,7 +6,7 @@
 #include "resetAll.h"
 #include "uploadData.h"//empty now!
 
-// downloaded .h files, use < >.
+// for downloaded .h files, use < >.
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <SPI.h>
@@ -18,30 +18,35 @@ MFRC522 mfrc522(10,9); //9=RST_PIN 10=SS_PIN
 // construct an object of LCD
 LiquidCrystal_I2C lcd(0x27,20,4);
 
-int seatStatus; //3 status: -1=avaliable, 0=temporarily out, 1=occupied (LEDID: -1=green, 0=blue, 1=red(occupied))
+int seatStatus -1; //3 status: -1=avaliable, 0=temporarily out, 1=occupied (LEDID: -1=green, 0=blue, 1=red(occupied))
+               // default available 
+
 int timeRemained;
 byte UIDStored[4]; //the UID stored.
 
-int action;  //6 action, anyone can add, if needed
+int action = 1;  //7 action, anyone can add, if needed
+            // default available
+            
             //action=1, display avaliable and green light.
             //action=2, display temporarily out and blue light.
             //action=3, display occupied and red.
             //action=4, display invalid and flash red light.
-            
             //action=5, display "Right ID card" when be back.
             //action=6, display "Card is registered."
             //action=7, display "NOT Right ID card"
 
 void setup(){
-  
-    Serial.begin(9600); // for debuging
-    Serial.println("RFID reader is ready!"); // for debuging
+    // debuging
+    Serial.begin(9600); 
+    Serial.println("RFID reader is ready!"); 
     
+    // lcd initialization
     lcd.init(); 
     lcd.backlight();
     
-    SPI.begin(); // for RFID initialization
-    mfrc522.PCD_Init(); // for RFID initialization
+    // RFID initialization
+    SPI.begin();
+    mfrc522.PCD_Init(); 
 }
 
 void loop(){
