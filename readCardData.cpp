@@ -1,5 +1,7 @@
 #include "readCardData.h"
 #include "Arduino.h"
+#include "LEDControl.h"
+#include "lcddisplay.h"
 #include <SPI.h>
 #include <MFRC522.h>
 
@@ -8,7 +10,7 @@ void readCardData(){
   extern int seatStatus;
   extern int action;
   extern byte UIDStored[4]; 
-  extern MFRC522 mfrc522(10,9);
+  extern MFRC522 mfrc522;
   
   //initialization in main program
   //MFRC522 mfrc522(10,9);
@@ -31,15 +33,16 @@ void readCardData(){
  
   }else{ // temporary output or available
     // check card is valid or not first.
-    // the card validity variable = card exist && the card number is read.
-    boolean rfidValid = (mfrc522.PICC_IsNewCardPresent() && mfrc522.PICC_ReadCardSerial());
+    // the card validity variable = the card number is read.
+    // IsNewCardPresent for excatly "new" card.
+    boolean rfidValid = ( mfrc522.PICC_IsNewCardPresent() && mfrc522.PICC_ReadCardSerial() );
   
       if ( rfidValid == false ) { // the  card is invalid.
        action = 4;
        lcddisplay(); // "invalid Card."
        LEDControl(1,1); // flash Red LED
        
-       delay(2000);
+       delay(1500);
        
        if(seatStatus == 0) { //lcd display the temporary out state.
        action = 2;
@@ -73,10 +76,11 @@ void readCardData(){
          lcddisplay(); // "Occupied."
          LEDControl(1,2); // Red LED on.
          seatStatus = -1; // the state changed into occupied
-         uploadData(); // report the system
+         //uploadData(); // report the system;  not written yet.
         }else if( seatStatus == 0 ) // temporary out.
-        { // if same == 0, the UIDread is same as Stored one.
-          int same = (UIDStored[1]-id[1])*(UIDStored[2]-id[2])*(UIDStored[3]-id[3])*(UIDStored[4]-id[4]);
+        { 
+          // if same == 0, the UIDread is same as Stored one.
+          int same = ((UIDStored[1]-id[1])&&(UIDStored[2]-id[2])&&(UIDStored[3]-id[3])&&(UIDStored[4]-id[4]));
 
           if( same != 0 ) { // not right card.flash red light and do nothing.
             action = 7;
@@ -99,7 +103,7 @@ void readCardData(){
             lcddisplay();
             LEDControl(1,2); // red light 
             seatStatus = -1 ; // the state changed into occupied
-            uploadData();
+            //uploadData(); not written yet.
           } // right card
         } //seatStatus == 0 
       } // rfidValid == 1

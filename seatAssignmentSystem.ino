@@ -18,7 +18,7 @@ MFRC522 mfrc522(10,9); //9=RST_PIN 10=SS_PIN
 // construct an object of LCD
 LiquidCrystal_I2C lcd(0x27,20,4);
 
-int seatStatus -1; //3 status: -1=avaliable, 0=temporarily out, 1=occupied (LEDID: -1=green, 0=blue, 1=red(occupied))
+int seatStatus =-1; //3 status: -1=avaliable, 0=temporarily out, 1=occupied (LEDID: -1=green, 0=blue, 1=red(occupied))
                // default available 
 
 int timeRemained;
