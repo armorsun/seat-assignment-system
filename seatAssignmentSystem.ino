@@ -1,21 +1,27 @@
+// for self-writing .h files, use " ".
 #include "lcddisplay.h"
 #include "checkCardPlaced.h"
 #include "LEDControl.h"
 #include "checkBtnPressed.h"
 #include "resetAll.h"
 #include "uploadData.h"//empty now!
-#include <Wire.h> 
+
+// downloaded .h files, use < >.
+#include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <SPI.h>
 #include <MFRC522.h>
 
-// construct a object of MFRC522 
+// construct an object of MFRC522 
 MFRC522 mfrc522(10,9); //9=RST_PIN 10=SS_PIN
 
-int seatStatus;//3 status: -1=avaliable, 0=temporarily out, 1=occupied (LEDID: -1=green, 0=blue, 1=red(occupied))
-int timeRemained;
-String cardID;
+// construct an object of LCD
 LiquidCrystal_I2C lcd(0x27,20,4);
+
+int seatStatus; //3 status: -1=avaliable, 0=temporarily out, 1=occupied (LEDID: -1=green, 0=blue, 1=red(occupied))
+int timeRemained;
+byte UIDStored[4]; //the UID stored.
+
 int action;  //6 action, anyone can add, if needed
             //action=1, display avaliable and green light.
             //action=2, display temporarily out and blue light.
@@ -25,8 +31,6 @@ int action;  //6 action, anyone can add, if needed
             //action=5, display "Right ID card" when be back.
             //action=6, display "Card is registered."
             //action=7, display "NOT Right ID card"
-
-byte UIDStored[4];
 
 void setup(){
   
