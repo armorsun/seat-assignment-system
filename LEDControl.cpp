@@ -25,9 +25,9 @@ pinMode(BLED,OUTPUT);
   
   if( LEDID==-1 && action==1 ) { // Green flash
     digitalWrite(GLED,HIGH); 
-    delay(500);
+    delay(375);
     digitalWrite(GLED,LOW); 
-    delay(500);
+    delay(375);
   }
   if( LEDID== 0 && action==1 ) { // blue flash
     digitalWrite(BLED,HIGH); 
