@@ -4,24 +4,11 @@
 // construct a object of MFRC522
 MFRC522 mfrc522(10,9); //9=RST_PIN 10=SS_PIN
 
-
-void setup() {
- // global variable : card UID
-}
-
-void loop() {
-  // put your main code here, to run repeatedly:
-
-}
-
 void readCardData(){
-  
   // global variable.
   extern int seatStatus;
   extern int action;
   extern byte UIDStored[4]; 
-  
-  int ref;
   
   if ( seatStatus == 1) { //occupied: flash red light and do nothing.
   action = 3; // action3 : occupied.
@@ -33,7 +20,7 @@ void readCardData(){
   ////////////////////////////////////////////////
   
   else { // temporary output or available
-  
+    // card proximity = 2.5cm.
     // check card is valid or not first.
     // the card validity variable = card exist && the card number is read.
     boolean rfidValid = (mfrc522.PICC_IsNewCardPresent() && mfrc522.PICC_ReadCardSerial());
@@ -67,10 +54,10 @@ void readCardData(){
       }
       
       if( seatStatus == 0 ) // temporary out.
-      {
-        ref = (UIDStored[1]-id[1])*(UIDStored[2]-id[2])*(UIDStored[3]-id[3])*(UIDStored[4]-id[4]);
+      { // if same == 0, the UIDread is same as Stored one.
+        int same = (UIDStored[1]-id[1])*(UIDStored[2]-id[2])*(UIDStored[3]-id[3])*(UIDStored[4]-id[4]);
 
-        if( ref != 0 ) { // not right card.flash red light and do nothing.
+        if( same != 0 ) { // not right card.flash red light and do nothing.
           action = 7;
           lcddisplay();
           LEDControl(0,1); // flashing blue
@@ -98,4 +85,5 @@ void readCardData(){
       } 
     }
    }
+}
 

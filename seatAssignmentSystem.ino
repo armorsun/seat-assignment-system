@@ -6,6 +6,11 @@
 #include "uploadData.h"//empty now!
 #include <Wire.h> 
 #include <LiquidCrystal_I2C.h>
+#include <SPI.h>
+#include <MFRC522.h>
+
+// construct a object of MFRC522 
+MFRC522 mfrc522(10,9); //9=RST_PIN 10=SS_PIN
 
 int seatStatus;//3 status: -1=avaliable, 0=temporarily out, 1=occupied (LEDID: -1=green, 0=blue, 1=red(occupied))
 int timeRemained;
