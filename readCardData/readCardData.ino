@@ -21,6 +21,8 @@ void readCardData(){
   extern int action;
   extern byte UIDStored[4]; 
   
+  int ref;
+  
   if ( seatStatus == 1) { //occupied: flash red light and do nothing.
   action = 3; // action3 : occupied.
   lcddisplay();
@@ -46,7 +48,7 @@ void readCardData(){
       byte *id = mfrc522.uid.uidByte;  //get UID of card and store in the id array;
       byte idSize = mfrc522.uid.size;  //get length of UID
       
-      if ( seatStatus == 1) // available.
+      if ( seatStatus == 1) {// available.
       
       // store the UID
       for (byte i = 0; i < idSize; i++){ UIDStored[i]=id[i]; }
@@ -62,10 +64,11 @@ void readCardData(){
        LEDControl(1,2); // Red LED on.
        seatStatus = -1; // the state changed into occupied
        uploadData(); // report the system
-             
+      }
+      
       if( seatStatus == 0 ) // temporary out.
       {
-        ref = (UIDStored[1]-id[1])*(UIDStored[2]-id[2])*(UIDStored[3]-id[3])*(UIDStored[4]-id[4])
+        ref = (UIDStored[1]-id[1])*(UIDStored[2]-id[2])*(UIDStored[3]-id[3])*(UIDStored[4]-id[4]);
 
         if( ref != 0 ) { // not right card.flash red light and do nothing.
           action = 7;
@@ -80,7 +83,7 @@ void readCardData(){
         }
       
         else { // right card  
-          action = 5 
+          action = 5;
           lcddisplay();
           LEDControl(-1,1); // flashing green
           
@@ -91,8 +94,8 @@ void readCardData(){
           LEDControl(1,2); // red light 
           seatStatus = -1 ; // the state changed into occupied
           uploadData();
-      }
-    } 
-  }
-}
+        }
+      } 
+    }
+   }
 

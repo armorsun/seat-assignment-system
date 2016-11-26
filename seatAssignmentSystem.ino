@@ -24,8 +24,13 @@ int action;  //6 action, anyone can add, if needed
 byte UIDStored[4];
 
 void setup(){
+  
+    Serial.begin(9600); // for debuging
+    Serial.println("RFID reader is ready!"); // for debuging
+    
     lcd.init(); 
     lcd.backlight();
+    
     SPI.begin(); // for RFID initialization
     mfrc522.PCD_Init(); // for RFID initialization
 }
