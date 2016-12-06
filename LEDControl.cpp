@@ -21,13 +21,9 @@ pinMode(BLED,OUTPUT);
   if( LEDID== 0 && action==0 ) digitalWrite(BLED,LOW); // blue off
   if( LEDID== 1 && action==0 ) digitalWrite(RLED,LOW); // red off
   
-  //-----flashing itself has the function of delaying 1.5 seconds.-----//
+  //-----flashing itself has the function of delaying .75 seconds.-----//
   
   if( LEDID==-1 && action==1 ) { // Green flash
-    digitalWrite(GLED,HIGH); 
-    delay(375);
-    digitalWrite(GLED,LOW); 
-    delay(375);
     digitalWrite(GLED,HIGH); 
     delay(375);
     digitalWrite(GLED,LOW); 
@@ -38,16 +34,8 @@ pinMode(BLED,OUTPUT);
     delay(375);
     digitalWrite(BLED,LOW); 
     delay(375);
-    digitalWrite(BLED,HIGH); 
-    delay(375);
-    digitalWrite(BLED,LOW); 
-    delay(375);
   }
   if( LEDID== 1 && action==1 ) { // red flash
-    digitalWrite(RLED,HIGH); 
-    delay(375);
-    digitalWrite(RLED,LOW); 
-    delay(375);
     digitalWrite(RLED,HIGH); 
     delay(375);
     digitalWrite(RLED,LOW); 

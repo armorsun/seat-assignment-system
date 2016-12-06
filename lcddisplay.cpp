@@ -7,7 +7,7 @@ void lcddisplay(){
 
   extern int seatStatus;  // access to global variable
   extern LiquidCrystal_I2C lcd;
-  extern int timeReamined;
+  extern int timeRemained;
   extern int action;
   
 //  LiquidCrystal_I2C lcd(0x27,20,4);  // set the LCD address to 0x27 for a 16 chars and 2 line display  
@@ -52,8 +52,8 @@ void lcddisplay(){
     lcd.setCursor(0,0);
     lcd.print("[Away]");
     lcd.setCursor(0,1);
-    int remainedSec = timeReamined%60;
-    int remainedMin = (timeReamined - remainedSec)/60;
+    int remainedSec = timeRemained%60;
+    int remainedMin = (timeRemained - remainedSec)/60;
     lcd.print("Reset in ");
     lcd.print(remainedMin);
     lcd.print(":");
