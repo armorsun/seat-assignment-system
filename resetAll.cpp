@@ -9,7 +9,7 @@ extern int action;
 
 void resetAll(){
 
-  seatStatus = -1;  // reset to "Away"
+  seatStatus = -1;  // reset to "available"
   action = 1;        // display avaliable and green light.
   timeRemained = 0; // not counting
   lcd.init(); 

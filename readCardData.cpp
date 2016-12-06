@@ -97,7 +97,6 @@ void readCardData(){
             lcddisplay();
             LEDControl(0,1); // flashing blue for1.5s.
             LEDControl(0,1); 
-            delay(2000);
           
           // -- actuators be back into original states -- //
           
@@ -112,7 +111,6 @@ void readCardData(){
             lcddisplay();
             LEDControl(-1,1); // flashing green for 1.5s
             LEDControl(-1,1); 
-            delay(2000);
         
          // -- actuators be back into original states -- //
          
@@ -121,7 +119,7 @@ void readCardData(){
             LEDControl(1,2); // red light 
             seatStatus = -1 ; // the state changed into occupied
             uploadData();
-          } // right card
+          } // right card check
         } //seatStatus == 0 
       } // rfidValid == 1
     } //seatStatus == 0 or 1.
