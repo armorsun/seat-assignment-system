@@ -21,9 +21,10 @@ void checkBtnPressed(){
     }else if(seatStatus == 1){
       //if occupied...
       seatStatus = 0;       //1. set seatStatus temporarily out, 
-      LEDControl(0,0);      //2. turn on blue LED, 
-      timeRemained = 1800;  //3. start counting down 30 mins
-      uploadData();         //4. report to RPi
+      LEDControl(0,2);      //2. turn on blue LED, 
+      LEDControl(1,0);      //3. turn off red LED!
+      timeRemained = 1800;  //4. start counting down 30 mins
+      uploadData();         //5. report to RPi
     }
   }
 }

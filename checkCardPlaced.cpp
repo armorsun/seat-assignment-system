@@ -19,11 +19,11 @@ void checkCardPlaced() {
 
   if(digitalRead(PhotoInterrupter)==0) //placed
   {
-//  readCardData();
+   readCardData();
   }
 
   if(digitalRead(PhotoInterrupter)==1) //not placed
   {
-//  if( seatStatus ==  1 ) {resetAll();} // occupied
+   if( seatStatus==1 ) {resetAll();} // occupied
   }
 }
