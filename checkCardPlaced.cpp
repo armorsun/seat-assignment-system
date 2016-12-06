@@ -24,6 +24,7 @@ void checkCardPlaced() {
 
   if(digitalRead(PhotoInterrupter)==1) //not placed
   {
-   if( seatStatus==1 ) {resetAll();} // occupied
+   if( seatStatus==1 ) {resetAll();} // occupied, then reset All.
+   
   }
 }

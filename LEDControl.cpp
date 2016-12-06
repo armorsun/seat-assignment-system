@@ -22,7 +22,7 @@ pinMode(BLED,OUTPUT);
   if( LEDID== 1 && action==0 ) digitalWrite(RLED,LOW); // red off
   
   //-----flashing itself has the function of delaying .75 seconds.-----//
-  
+  // if you want flash  twice, call it twice.
   if( LEDID==-1 && action==1 ) { // Green flash
     digitalWrite(GLED,HIGH); 
     delay(375);
