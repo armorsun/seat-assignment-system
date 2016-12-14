@@ -84,7 +84,7 @@ void readCardData(){
          lcddisplay(); // "Occupied."
          LEDControl(1,2); // Red LED on.
          seatStatus = -1; // the state changed into occupied
-         uploadData(); 
+         uploadData();
          
         }else if( seatStatus == 0 ) // temporary out.
         { 
