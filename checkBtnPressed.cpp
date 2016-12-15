@@ -8,6 +8,7 @@
 extern int seatStatus;
 extern int timeRemained;
 extern unsigned long millisWhenLeave;
+extern int action;
 
 void checkBtnPressed(){
 
@@ -27,7 +28,9 @@ void checkBtnPressed(){
       timeRemained = 1800;  //4. start counting down 30 mins
       uploadData();         //5. report to RPi
 
-      millisWhenLeave = millis(); //6. record the millisecond when start countdown
+      millisWhenLeave = millis(); //6. record the millisecond when start countdown (Added by yuda)
+      action = 2;           // (Added by yuda)
+      lcddisplay();         // lcd start counting (Added by yuda)
       
     }
   }
