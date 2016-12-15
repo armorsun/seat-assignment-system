@@ -7,6 +7,7 @@
 
 extern int seatStatus;
 extern int timeRemained;
+extern unsigned long millisWhenLeave;
 
 void checkBtnPressed(){
 
@@ -25,6 +26,9 @@ void checkBtnPressed(){
       LEDControl(1,0);      //3. turn off red LED!
       timeRemained = 1800;  //4. start counting down 30 mins
       uploadData();         //5. report to RPi
+
+      millisWhenLeave = millis(); //6. record the millisecond when start countdown
+      
     }
   }
 }
