@@ -13,8 +13,8 @@ void checkCardPlaced() {
   
   pinMode(PhotoInterrupter,INPUT);
 
-//Serial.println(digitalRead(PhotoInterrupter)); // <- for debuging 
-//Resistance of LED should be about 330Ohm.
+  Serial.println(digitalRead(PhotoInterrupter)); // <- for debuging 
+//Resistance of LED should be about 330ohm.
 //Resistance of detector should be about 10k.
 
   if(digitalRead(PhotoInterrupter)==0) //placed
@@ -22,9 +22,8 @@ void checkCardPlaced() {
    readCardData();
   }
 
-  if(digitalRead(PhotoInterrupter)==1) //not placed
+  if((digitalRead(PhotoInterrupter)==1)&&(seatStatus==1)) //not placed
   {
-   if( seatStatus==1 ) {resetAll();} // occupied, then reset All.
-   
+   resetAll(); // occupied, then reset All.
   }
 }
