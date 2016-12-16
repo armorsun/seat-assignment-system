@@ -37,7 +37,7 @@ void checkBtnPressed(){
   }
   
   //display of state! by Fruit
-  
+  /*
   lcddisplay();
 
   if (seatStatus == -1) {
@@ -59,5 +59,6 @@ void checkBtnPressed(){
     LEDControl(0, 2);
 
   } 
+  */
 }
 
