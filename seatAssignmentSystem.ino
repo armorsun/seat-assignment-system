@@ -66,6 +66,10 @@ void setup() {
   else {
     Serial.println("Cannot connect to WiFi!");
   }
+
+  // the default setting of LED & LCD
+  LEDControl(1, 2);
+  lcddisplay();
 }
 
 void loop() {
@@ -73,24 +77,29 @@ void loop() {
   //---Remind that the effect LEDControl(x,2) and lcddisplay are constant.---//
   //---Remind that the effect LEDControl(x,1) has the function of delaying 0.75s.//
 
-  checkBtnPressed();//check seatStatus first,
-  //if seat avaliable or temporarily out, do nothing,
-  //if occupied, start countdown(e.g.  set timeRemained=1800), turn on blue LED, set seatStatus temporarily out, uploadData().
+  //====from "available" to "Away"====// -> IMPOSSIBLE
 
+  //====from "occupied" to "Away"====// -> by button
+  checkBtnPressed();
+  // problem : the Button pressed during the remain time?
+
+  //==== from "Away" to "available" ====// -> after 5 secs
   if (seatStatus == 0) {
     millisElapsed = millis() - millisWhenLeave;
-    if (millisElapsed < 1800) {
+    if (millisElapsed < 5000) { // 5000 the for debugging ; actually 1800000
       Serial.print("Milliseconds elapsed: ");
       Serial.println(millisElapsed);
-      //TODO: test update lcddisplay in loop
-    } else if (millisElapsed >= 1800) {
+
+    } else if (millisElapsed >= 5000) {
       Serial.print("TIME'S UP!");
       resetAll();
     }
   }
 
-  checkCardPlaced();//using photointerupter to detect if a card is placed, if yes call readCardData(),
-  //if not, do nothing.
+  //====from "Available" to "occupied" ====// -> by card in
+  //====from "occupied" to "Available" ====// -> by card out
+  //====from "Away" to "occupied" ====// -> by card back
+  checkCardPlaced();
 
 }
 
