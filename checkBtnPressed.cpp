@@ -35,5 +35,29 @@ void checkBtnPressed(){
       
     }
   }
+  
+  //display of state! by Fruit
+  
+  lcddisplay();
+
+  if (seatStatus == -1) {
+
+    LEDControl(-1, 2);
+    LEDControl(1, 0);
+    LEDControl(0, 0);
+
+  }else if (seatStatus == 1) {
+
+    LEDControl(-1, 0);
+    LEDControl(1, 2);
+    LEDControl(0, 0);
+
+  }else if (seatStatus == 0) {
+
+    LEDControl(-1, 0);
+    LEDControl(1, 0);
+    LEDControl(0, 2);
+
+  } 
 }
 

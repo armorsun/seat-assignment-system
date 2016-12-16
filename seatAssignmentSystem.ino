@@ -21,7 +21,7 @@ LiquidCrystal_I2C lcd(0x27, 20, 4);
 const char* ssid = "Kai";
 const char* password = "xddddddd";
 
-int seatStatus = -1; //3 status: -1=avaliable, 0=temporarily out, 1=occupied (LEDID: -1=green, 0=blue, 1=red(occupied))
+int seatStatus = 1; //3 status: -1=avaliable, 0=temporarily out, 1=occupied (LEDID: -1=green, 0=blue, 1=red(occupied))
 int timeRemained;
 byte UIDStored[4]; //the UID stored.
 int action = 1;  //7 action, anyone can add, if needed
@@ -76,33 +76,19 @@ void loop() {
   checkBtnPressed();//check seatStatus first,
   //if seat avaliable or temporarily out, do nothing,
   //if occupied, start countdown(e.g.  set timeRemained=1800), turn on blue LED, set seatStatus temporarily out, uploadData().
- 
-  lcddisplay();
-  
-  if(seatStatus == -1){
 
-    LEDControl(-1,2); 
-    LEDControl(1,0); 
-    LEDControl(0,0); 
-  
-  }else if(seatStatus == 1)
-    
-    LEDControl(-1,0); 
-    LEDControl(1,2); 
-    LEDControl(0,0);
-    
-  }else if(seatStatus == 0) {
-    millisElapsed = millis()-millisWhenLeave;
+  if (seatStatus == 0) {
+    millisElapsed = millis() - millisWhenLeave;
     if (millisElapsed < 1800) {
       Serial.print("Milliseconds elapsed: ");
       Serial.println(millisElapsed);
       //TODO: test update lcddisplay in loop
-    }else if (millisElapsed >= 1800){
+    } else if (millisElapsed >= 1800) {
       Serial.print("TIME'S UP!");
       resetAll();
     }
   }
-  
+
   checkCardPlaced();//using photointerupter to detect if a card is placed, if yes call readCardData(),
   //if not, do nothing.
 
