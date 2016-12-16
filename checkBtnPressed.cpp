@@ -4,6 +4,7 @@
 #include "checkBtnPressed.h"
 #include "LEDControl.h"
 #include "uploadData.h" //coming soon
+#include "lcddisplay.h"
 
 extern int seatStatus;
 extern int timeRemained;

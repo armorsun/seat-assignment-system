@@ -85,6 +85,7 @@ void loop() {
     if (millisElapsed < 1800) {
       Serial.print("Milliseconds elapsed: ");
       Serial.println(millisElapsed);
+      //TODO: test update lcddisplay in loop
     }else if (millisElapsed >= 1800){
       Serial.print("TIME'S UP!");
       resetAll();
