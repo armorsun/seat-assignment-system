@@ -13,7 +13,7 @@ void checkCardPlaced() {
   
   pinMode(PhotoInterrupter,INPUT);
 
-  Serial.println(digitalRead(PhotoInterrupter)); // <- for debuging 
+//Serial.println(digitalRead(PhotoInterrupter)); // <- for debuging 
 //Resistance of LED should be about 330ohm.
 //Resistance of detector should be about 10k.
 
