@@ -11,8 +11,11 @@
 #include <WiFi.h>
 #include <SoftwareSerial.h>
 
-#define ESP8266_RX 11
-#define ESP8266_TX 12
+//for debugging
+//#define ESP8266_RX 11 
+//#define ESP8266_TX 12
+#define ESP8266_RX A0
+#define ESP8266_TX A1
 
 SoftwareSerial wifiSerial(ESP8266_RX, ESP8266_TX);
 MFRC522 mfrc522(10, 9); //9=RST_PIN 10=SS_PIN
@@ -68,7 +71,7 @@ void setup() {
   }
 
   // the default setting of LED & LCD
-  LEDControl(1, 2);
+  LEDControl(-1, 2);
   lcddisplay();
 }
 

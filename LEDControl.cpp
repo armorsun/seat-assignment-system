@@ -1,6 +1,6 @@
-#define RLED 3
+#define RLED 5
 #define GLED 4
-#define BLED 5
+#define BLED 3
 
 #include "LEDControl.h"
 #include "Arduino.h"

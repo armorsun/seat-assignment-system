@@ -6,6 +6,7 @@
 #include <SPI.h>
 #include <MFRC522.h>
 
+
 void readCardData() {
   // global variables
   extern int seatStatus;
@@ -29,17 +30,21 @@ void readCardData() {
     // check card is valid or not first.
     // IsNewCardPresent for excatly "new" card.
     boolean rfidValid = (mfrc522.PICC_IsNewCardPresent() && mfrc522.PICC_ReadCardSerial());
+    Serial.println("New? : ");
+    Serial.println(mfrc522.PICC_IsNewCardPresent()); 
+    Serial.println("Read? : ");
+    Serial.println(mfrc522.PICC_ReadCardSerial()); 
 
     if (rfidValid == false) { // the  card is invalid.
     
       LEDControl(0, 0); // turn off green and blue light.
       LEDControl(-1, 0);// turn off green and blue light.
 
-      LEDControl(1, 1); // flash Red LED and delay1.5s.
-      LEDControl(1, 1);
-
       action = 4;
       lcddisplay(); // "invalid Card."
+      
+      LEDControl(1, 1); // flash Red LED and delay1.5s.
+      LEDControl(1, 1);
 
       //actuators be back into original states
       if (seatStatus == 0) { //temporary out
@@ -59,7 +64,7 @@ void readCardData() {
       byte *id = mfrc522.uid.uidByte;  //get UID of card and store in the id array;
       byte idSize = mfrc522.uid.size;  //get length of UID
 
-      if ( seatStatus == 1) {
+      if ( seatStatus == -1) {
       
 //====from "Available" to "occupied" ====//
 
