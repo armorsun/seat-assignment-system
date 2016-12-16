@@ -63,17 +63,17 @@ void lcddisplay() {
     lcd.setCursor(0, 0);
     lcd.print("Right ID card");
     lcd.setCursor(0, 1);
-    lcd.print("");
+    lcd.print("                "); //clean all by fruit
   } else if (action == 6) {
     lcd.setCursor(0, 0);
-    lcd.print("Card is registered.");
+    lcd.print("Card registered.");
     lcd.setCursor(0, 1);
-    lcd.print("");
+    lcd.print("                "); //clean all by fruit
   } else if (action == 7) {
     lcd.setCursor(0, 0);
-    lcd.print("NOT Right ID card");
+    lcd.print("Wrong ID card");
     lcd.setCursor(0, 1);
-    lcd.print("");
+    lcd.print("                "); //clean all by fruit
   }
 
 }

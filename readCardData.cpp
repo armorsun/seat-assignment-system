@@ -14,26 +14,24 @@ void readCardData() {
   extern byte UIDStored[4];
   extern MFRC522 mfrc522;
 
-//==== trouble processing 1: "the other card in." ====//
+//==== trouble processing 1: "the other card in." ====// // no such condition
+/*
   if (seatStatus == 1) { //occupied: flash red light and do nothing.
-    //action = 3; // occupied.
-    //lcddisplay();
+    action = 3; // occupied.
+    lcddisplay();
     LEDControl(1, 1); //light flashing and delay for 1.5s.
     LEDControl(1, 1);
     //actuators be back into original states
     LEDControl(1, 2); // light
 
   } else { // temporary output or available
+  */
   
 //==== trouble processing 2: "invalid Card." ====//
   
     // check card is valid or not first.
     // IsNewCardPresent for excatly "new" card.
     boolean rfidValid = (mfrc522.PICC_IsNewCardPresent() && mfrc522.PICC_ReadCardSerial());
-    Serial.println("New? : ");
-    Serial.println(mfrc522.PICC_IsNewCardPresent()); 
-    Serial.println("Read? : ");
-    Serial.println(mfrc522.PICC_ReadCardSerial()); 
 
     if (rfidValid == false) { // the  card is invalid.
     
@@ -60,7 +58,6 @@ void readCardData() {
       }
 
     } else { // the  card is valid.
-      Serial.println("Card Reading...");
       byte *id = mfrc522.uid.uidByte;  //get UID of card and store in the id array;
       byte idSize = mfrc522.uid.size;  //get length of UID
 
@@ -79,9 +76,9 @@ void readCardData() {
         LEDControl(-1, 1); // after flashing, green light is off.
         
         //actuators be back into original states
-        seatStatus = -1; // the state changed into occupied
+        seatStatus = 1; // the state changed into occupied
         LEDControl(1, 2); // Red LED on.
-        action = 1;
+        action = 3;
         lcddisplay(); // "Occupied."
         
         uploadData();
@@ -125,7 +122,7 @@ void readCardData() {
         } // right card check
       } //seatStatus == 0
     } // rfidValid == 1
-  } //seatStatus == 0 or 1.
+  //seatStatus == 0 or 1.
   //mfrc522.PICC_HaltA();
   // halt the card to prevent mfrc522.PICC_IsNewCardPresent() error.
 } // whole fuction

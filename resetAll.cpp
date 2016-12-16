@@ -2,6 +2,7 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include "LEDControl.h"
+#include "lcddisplay.h"
 
 extern int seatStatus;
 extern int timeRemained;
@@ -18,8 +19,9 @@ void resetAll() {
   LEDControl(0, 0); // lights off.
   LEDControl(-1, 2); //green light.
   timeRemained = 0; // not counting
-  lcd.init();
-  lcd.backlight();
+  //lcd.init();
+  //lcd.backlight();
+  lcddisplay();
   millisElapsed = 0;
   millisWhenLeave = 0;
 
