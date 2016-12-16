@@ -42,8 +42,8 @@ void setup() {
   wifiSerial.begin(9600);
 
   // lcd initialization
-  lcd.init();
-  lcd.backlight();
+  lcd.init(); // controller open
+  lcd.backlight(); // light open
 
   // RFID initialization
   SPI.begin();
@@ -76,8 +76,22 @@ void loop() {
   checkBtnPressed();//check seatStatus first,
   //if seat avaliable or temporarily out, do nothing,
   //if occupied, start countdown(e.g.  set timeRemained=1800), turn on blue LED, set seatStatus temporarily out, uploadData().
+ 
+  lcddisplay();
+  
+  if(seatStatus == -1){
 
-  if (seatStatus == 0) {
+    LEDControl(-1,2); 
+    LEDControl(1,0); 
+    LEDControl(0,0); 
+  
+  }else if(seatStatus == 1)
+    
+    LEDControl(-1,0); 
+    LEDControl(1,2); 
+    LEDControl(0,0);
+    
+  }else if(seatStatus == 0) {
     millisElapsed = millis()-millisWhenLeave;
     if (millisElapsed < 1800) {
       Serial.print("Milliseconds elapsed: ");
