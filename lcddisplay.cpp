@@ -54,10 +54,11 @@ void lcddisplay() {
     lcd.setCursor(0, 1);
     int remainedSec = timeRemained % 60;
     int remainedMin = (timeRemained - remainedSec) / 60;
-    lcd.print("Reset in ");
+    lcd.print("Reset in");
     lcd.print(remainedMin);
     lcd.print(":");
-    lcd.print(remainedSec);
+    lcd.print(remainedSec-remainedSec%10); // UI fix by fruit
+    lcd.print(remainedSec%10); // UI fix by fruit
 
   } else if (action == 5) {
     lcd.setCursor(0, 0);

@@ -32,7 +32,7 @@ void checkBtnPressed() {
       millisWhenLeave = millis(); //6. record the millisecond when start countdown (Added by yuda)
       action = 2;           // (Added by yuda)
       lcddisplay();         // lcd start counting (Added by yuda)
-
+      delay(1000);
     }
   }
 }

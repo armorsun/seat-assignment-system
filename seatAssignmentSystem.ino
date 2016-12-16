@@ -88,11 +88,11 @@ void loop() {
   //==== from "Away" to "available" ====// -> after 5 secs [here in main program]
   if (seatStatus == 0) {
     millisElapsed = millis() - millisWhenLeave;
-    if (millisElapsed < 5000) { // 5000 the for debugging ; actually 1800000
+    if (millisElapsed < 10000) { // 10000 the for debugging ; actually 1800000
       Serial.print("Milliseconds elapsed: ");
       Serial.println(millisElapsed);
 
-    } else if (millisElapsed >= 5000) {
+    } else if (millisElapsed >= 10000) {
       Serial.print("TIME'S UP!");
       resetAll();
     }

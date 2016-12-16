@@ -83,7 +83,7 @@ void readCardData() {
         
         uploadData();
 
-      } else if ( seatStatus == 0 ) {
+      } else if ( seatStatus == 0 ) { //"away"
         
 //==== trouble processing 3 of "Away": "wrong Card." ====//
         // if same == 1, the UIDread is same as Stored one.
