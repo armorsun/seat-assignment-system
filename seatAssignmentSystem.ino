@@ -74,7 +74,6 @@ void loop() {
   checkBtnPressed();//check seatStatus first,
   //if seat avaliable or temporarily out, do nothing,
   //if occupied, start countdown(e.g.  set timeRemained=1800), turn on blue LED, set seatStatus temporarily out, uploadData().
-<<<<<<< HEAD
 
   if (seatStatus == 0) {
     millisElapsed = millis()-millisWhenLeave;
@@ -87,11 +86,9 @@ void loop() {
       resetAll();
     }
   }
-=======
   
   checkCardPlaced();//using photointerupter to detect if a card is placed, if yes call readCardData(),
   //if not, do nothing.
->>>>>>> ffe76a7976d25e106d00eea424a6306f4530d2bb
 
 }
 
