@@ -81,7 +81,6 @@ void loop() {
 
   //====from "occupied" to "Away"====// -> by button
   checkBtnPressed();
-  // problem : the Button pressed during the remain time?
 
   //==== from "Away" to "available" ====// -> after 5 secs
   if (seatStatus == 0) {

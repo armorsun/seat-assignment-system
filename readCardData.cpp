@@ -12,11 +12,6 @@ void readCardData(){
   extern int action;
   extern byte UIDStored[4]; 
   extern MFRC522 mfrc522;
-  
-  //initialization in main program
-  //MFRC522 mfrc522(10,9);
-  //SPI.begin(); //initialize SPI
-  //mfrc522.PCD_Init(); //initialize mfrc522  
             
   //action=1, display avaliable and green light.
   //action=2, display temporarily out and blue light.
@@ -110,7 +105,7 @@ void readCardData(){
             action = 5;
             lcddisplay();
             LEDControl(-1,1); // flashing green for 1.5s
-            LEDControl(-1,1); 
+            LEDControl(-1,1); // after flashing, green light off
         
          // -- actuators be back into original states -- //
          
