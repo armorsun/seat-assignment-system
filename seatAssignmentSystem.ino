@@ -25,6 +25,8 @@ int seatStatus = -1; //3 status: -1=avaliable, 0=temporarily out, 1=occupied (LE
 int timeRemained;
 byte UIDStored[4]; //the UID stored.
 int action = 1;  //7 action, anyone can add, if needed
+unsigned long millisWhenLeave = 0;
+unsigned long millisElapsed;
 
 //action=1, display avaliable and green light.
 //action=2, display temporarily out and blue light.
