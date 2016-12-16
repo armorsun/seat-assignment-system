@@ -21,9 +21,9 @@ LiquidCrystal_I2C lcd(0x27, 20, 4);
 const char* ssid = "Kai";
 const char* password = "xddddddd";
 
-int seatStatus = 1; //3 status: -1=avaliable, 0=temporarily out, 1=occupied (LEDID: -1=green, 0=blue, 1=red(occupied))
+int seatStatus = -1; //3 status: -1=avaliable, 0=temporarily out, 1=occupied (LEDID: -1=green, 0=blue, 1=red(occupied))
 int timeRemained;
-byte UIDStored[4]; //the UID stored.
+byte UIDStored[4] = { 0, 0, 0, 0 }; //the UID stored.
 int action = 1;  //7 action, anyone can add, if needed
 unsigned long millisWhenLeave = 0;
 unsigned long millisElapsed;
@@ -79,10 +79,10 @@ void loop() {
 
   //====from "available" to "Away"====// -> IMPOSSIBLE
 
-  //====from "occupied" to "Away"====// -> by button
+  //====from "occupied" to "Away"====// -> by button [checkBtnPressed()]
   checkBtnPressed();
 
-  //==== from "Away" to "available" ====// -> after 5 secs
+  //==== from "Away" to "available" ====// -> after 5 secs [here in main program]
   if (seatStatus == 0) {
     millisElapsed = millis() - millisWhenLeave;
     if (millisElapsed < 5000) { // 5000 the for debugging ; actually 1800000
@@ -95,9 +95,9 @@ void loop() {
     }
   }
 
-  //====from "Available" to "occupied" ====// -> by card in
-  //====from "occupied" to "Available" ====// -> by card out
-  //====from "Away" to "occupied" ====// -> by card back
+  //====from "Available" to "occupied" ====// -> by card in [readCardData()]
+  //====from "occupied" to "Available" ====// -> by card out [checkCardPlaced()]
+  //====from "Away" to "occupied" ====// -> by card back [readCardData()]
   checkCardPlaced();
 
 }
