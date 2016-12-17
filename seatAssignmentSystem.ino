@@ -11,7 +11,7 @@
 #include <WiFi.h>
 #include <SoftwareSerial.h>
 
-//for debugging
+//for the RFID using 11, 12.
 //#define ESP8266_RX 11 
 //#define ESP8266_TX 12
 #define ESP8266_RX A0
@@ -32,12 +32,13 @@ unsigned long millisWhenLeave = 0;
 unsigned long millisElapsed;
 
 //action=1, display avaliable and green light.
-//action=2, display temporarily out and blue light.
+//action=2, display temporarily out and blue light. USED AT THE CHANGE OF SEAT STATUS!!!
 //action=3, display occupied and red.
 //action=4, display invalid and flash red light.
 //action=5, display "Right ID card" when be back.
 //action=6, display "Card is registered."
 //action=7, display "NOT Right ID card"
+//action=8, display the updating the time! USED DURING THE SEAT STATUS!!!
 
 void setup() {
   Serial.begin(9600);
@@ -92,6 +93,10 @@ void loop() {
       Serial.print("Milliseconds elapsed: ");
       Serial.println(millisElapsed);
 
+      timeRemained = timeRemained - millisElapsed/1000; // automatically calculated as integer.
+      action = 8;
+      lcddisplay();
+      
     } else if (millisElapsed >= 10000) {
       Serial.print("TIME'S UP!");
       resetAll();
@@ -124,16 +129,3 @@ boolean WiFiConnected() {
     return false;
   }
 }
-//void LCDDisplay(){}   //check action
-
-//void readCardData(){} //check seatStatus,
-//if not avaliable, flash red light and do nothing, set action=4
-//if avaliable, check card is valid or not, is the same or not,
-//if not, flash Red LED, set action=4
-//if yes, turn on green LED, call uploadData() , set timeRemaind=0, set seatStatus=occupied, set action=3
-
-//void LEDControl(int LEDID){}//turn on,turn off, flash...., LEDID: -1=green, 0=blue, 1=red, check action
-
-//void uploadData(){}//upload card, timeRemained, status, using json format.
-
-//void resetAll(){}//seatStatus=-1, action=1, timeRemained=0, LCDDisplay, LEDControl, uploadData

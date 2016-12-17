@@ -21,7 +21,8 @@ void lcddisplay() {
   //action=5, display "Right ID card" when be back.
   //action=6, display "Card is registered."
   //action=7, display "NOT Right ID card"
-
+  //action=8, display the updating the time! USED DURING THE SEAT STATUS!!!
+  
   if (action == 4) {
 
     lcd.clear();
@@ -46,20 +47,22 @@ void lcddisplay() {
     lcd.setCursor(0, 1);
     lcd.print("Report if empty");
 
-  } else if (action == 2) {
+  } else if (action == 2) { // the instant of "away" change!
 
     lcd.clear();
     lcd.setCursor(0, 0);
     lcd.print("[Away]");
     lcd.setCursor(0, 1);
-    int remainedSec = timeRemained % 60;
-    int remainedMin = (timeRemained - remainedSec) / 60;
-    lcd.print("Reset in");
-    lcd.print(remainedMin);
-    lcd.print(":");
-    lcd.print(remainedSec-remainedSec%10); // UI fix by fruit
-    lcd.print(remainedSec%10); // UI fix by fruit
-
+    //====Original action 2====//
+    //int remainedSec = timeRemained % 60;
+    //int remainedMin = (timeRemained - remainedSec) / 60;
+    //lcd.print("Reset in");
+    lcd.print("Reset in 0:10");
+     //====Original action 2====//
+    //lcd.print(remainedMin);
+    //lcd.print(":");
+    //lcd.print(remainedSec-remainedSec%10); // UI fix by fruit
+    //lcd.print(remainedSec%10); // UI fix by fruit
   } else if (action == 5) {
     lcd.setCursor(0, 0);
     lcd.print("Right ID card");
@@ -75,6 +78,19 @@ void lcddisplay() {
     lcd.print("Wrong ID card");
     lcd.setCursor(0, 1);
     lcd.print("                "); //clean all by fruit
+  } else if (action == 7) {
+    lcd.setCursor(0, 0);
+    lcd.print("Wrong ID card");
+    lcd.setCursor(0, 1);
+    lcd.print("                "); //clean all by fruit
+  } else if (action == 8) { // display the updating the time
+    lcd.setCursor(9, 1);
+    int remainedSec = timeRemained % 60;
+    int remainedMin = (timeRemained - remainedSec) / 60;
+    lcd.print(remainedMin);
+    lcd.print(":");
+    lcd.print(remainedSec-remainedSec%10); // UI fix by fruit
+    lcd.print(remainedSec%10); // UI fix by fruit
   }
 
 }
