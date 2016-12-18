@@ -1,19 +1,29 @@
 #include "Arduino.h"
-#include <Wire.h> 
+#include <Wire.h>
 #include <LiquidCrystal_I2C.h>
+#include "LEDControl.h"
+#include "lcddisplay.h"
 
 extern int seatStatus;
 extern int timeRemained;
 extern LiquidCrystal_I2C lcd;
 extern int action;
+extern unsigned long millisWhenLeave;
+extern unsigned long millisElapsed;
 
-void resetAll(){
+void resetAll() {
 
-  seatStatus = -1;  // reset to "Away"
-  action = 1;        // display avaliable and green light.
+  seatStatus = -1;  // reset to "Available"
+  action = 1;        // display avaliable
+  LEDControl(1, 0); // lights off.
+  LEDControl(0, 0); // lights off.
+  LEDControl(-1, 2); //green light.
   timeRemained = 0; // not counting
-  lcd.init(); 
-  lcd.backlight();
-  
+  //lcd.init();
+  //lcd.backlight();
+  lcddisplay();
+  millisElapsed = 0;
+  millisWhenLeave = 0;
+
 }
 

@@ -11,8 +11,10 @@
 #include <WiFi.h>
 #include <SoftwareSerial.h>
 
-#define ESP8266_RX 11
-#define ESP8266_TX 12
+#define ESP8266_RX 7
+#define ESP8266_TX 8
+#define ESP8266_RX A0
+#define ESP8266_TX A1
 
 SoftwareSerial wifiSerial(ESP8266_RX, ESP8266_TX);
 MFRC522 mfrc522(10, 9); //9=RST_PIN 10=SS_PIN
@@ -23,16 +25,19 @@ const char* password = "xddddddd";
 
 int seatStatus = -1; //3 status: -1=avaliable, 0=temporarily out, 1=occupied (LEDID: -1=green, 0=blue, 1=red(occupied))
 int timeRemained;
-byte UIDStored[4]; //the UID stored.
+byte UIDStored[4] = { 0, 0, 0, 0 }; //the UID stored.
 int action = 1;  //7 action, anyone can add, if needed
+unsigned long millisWhenLeave = 0;
+unsigned long millisElapsed;
 
 //action=1, display avaliable and green light.
-//action=2, display temporarily out and blue light.
+//action=2, display temporarily out and blue light. USED AT THE CHANGE OF SEAT STATUS!!!
 //action=3, display occupied and red.
 //action=4, display invalid and flash red light.
 //action=5, display "Right ID card" when be back.
 //action=6, display "Card is registered."
 //action=7, display "NOT Right ID card"
+//action=8, display the updating the time! USED DURING THE SEAT STATUS!!!
 
 void setup() {
   Serial.begin(9600);
@@ -40,8 +45,8 @@ void setup() {
   wifiSerial.begin(9600);
 
   // lcd initialization
-  lcd.init();
-  lcd.backlight();
+  lcd.init(); // controller open
+  lcd.backlight(); // light open
 
   // RFID initialization
   SPI.begin();
@@ -64,6 +69,10 @@ void setup() {
   else {
     Serial.println("Cannot connect to WiFi!");
   }
+
+  // the default setting of LED & LCD
+  LEDControl(-1, 2);
+  lcddisplay();
 }
 
 void loop() {
@@ -71,12 +80,32 @@ void loop() {
   //---Remind that the effect LEDControl(x,2) and lcddisplay are constant.---//
   //---Remind that the effect LEDControl(x,1) has the function of delaying 0.75s.//
 
-  checkCardPlaced();//using photointerupter to detect if a card is placed, if yes call readCardData(),
-  //if not, do nothing.
+  //====from "available" to "Away"====// -> IMPOSSIBLE
 
-  checkBtnPressed();//check seatStatus first,
-  //if seat avaliable or temporarily out, do nothing,
-  //if occupied, start countdown(e.g.  set timeRemained=1800), turn on blue LED, set seatStatus temporarily out, uploadData().
+  //====from "occupied" to "Away"====// -> by button [checkBtnPressed()]
+  checkBtnPressed();
+
+  //==== from "Away" to "available" ====// -> after 5 secs [here in main program]
+  if (seatStatus == 0) {
+    millisElapsed = millis() - millisWhenLeave;
+    if (millisElapsed < 10000) { // 10000 the for debugging ; actually 1800000
+      Serial.print("Milliseconds elapsed: ");
+      Serial.println(millisElapsed);
+
+      timeRemained = timeRemained - millisElapsed/1000; // automatically calculated as integer.
+      action = 8;
+      lcddisplay();
+      
+    } else if (millisElapsed >= 10000) {
+      Serial.print("TIME'S UP!");
+      resetAll();
+    }
+  }
+
+  //====from "Available" to "occupied" ====// -> by card in [readCardData()]
+  //====from "occupied" to "Available" ====// -> by card out [checkCardPlaced()]
+  //====from "Away" to "occupied" ====// -> by card back [readCardData()]
+  checkCardPlaced();
 
 }
 
@@ -99,16 +128,3 @@ boolean WiFiConnected() {
     return false;
   }
 }
-//void LCDDisplay(){}   //check action
-
-//void readCardData(){} //check seatStatus,
-//if not avaliable, flash red light and do nothing, set action=4
-//if avaliable, check card is valid or not, is the same or not,
-//if not, flash Red LED, set action=4
-//if yes, turn on green LED, call uploadData() , set timeRemaind=0, set seatStatus=occupied, set action=3
-
-//void LEDControl(int LEDID){}//turn on,turn off, flash...., LEDID: -1=green, 0=blue, 1=red, check action
-
-//void uploadData(){}//upload card, timeRemained, status, using json format.
-
-//void resetAll(){}//seatStatus=-1, action=1, timeRemained=0, LCDDisplay, LEDControl, uploadData
