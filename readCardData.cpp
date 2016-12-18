@@ -108,7 +108,7 @@ void readCardData() {
 
         //actuators be back into original states
 
-        seatStatus = -1 ; // the state changed into occupied
+        seatStatus = -1 ; // the state changed into available
         LEDControl(1, 2); // red light
         action = 3;
         lcddisplay();
@@ -118,9 +118,6 @@ void readCardData() {
       } // right card check
     } //seatStatus == 0
   } // rfidValid == 1
-  //seatStatus == 0 or 1.
-  //mfrc522.PICC_HaltA();
-  // halt the card to prevent mfrc522.PICC_IsNewCardPresent() error.
 } // whole fuction
 
 
