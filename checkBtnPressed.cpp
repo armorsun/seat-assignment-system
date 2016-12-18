@@ -29,9 +29,9 @@ void checkBtnPressed() {
       timeRemained = 10;    //4. start counting down 30 mins ; in the test version, time is 10 secs.
       uploadData();         //5. report to RPi
 
-      millisWhenLeave = millis(); //6. record the millisecond when start countdown (Added by yuda)
-      action = 2;           // (Added by yuda)
-      lcddisplay();         // lcd start counting (Added by yuda)
+      millisWhenLeave = millis(); //6. record the millisecond when start countdown
+      action = 2;          
+      lcddisplay();      
       delay(1000);
     }
   }

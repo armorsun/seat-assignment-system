@@ -17,13 +17,13 @@ void checkCardPlaced() {
   //Resistance of LED should be about 330ohm.
   //Resistance of detector should be about 10k.
 
-  if (digitalRead(PhotoInterrupter) == 0 && (seatStatus != 1)) //placed
+  if (digitalRead(PhotoInterrupter) == 0 && (seatStatus != 1)) //card placed
   {
     readCardData();
   }
 
-  if ((digitalRead(PhotoInterrupter) == 1) && (seatStatus == 1)) //not placed
+  if ((digitalRead(PhotoInterrupter) == 1) && (seatStatus == 1)) // occupied, then reset All.
   {
-    resetAll(); // occupied, then reset All.
+    resetAll(); 
   }
 }

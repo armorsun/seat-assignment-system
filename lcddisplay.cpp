@@ -5,14 +5,10 @@
 
 void lcddisplay() {
 
-  extern int seatStatus;  // access to global variable
+  extern int seatStatus;
   extern LiquidCrystal_I2C lcd;
   extern int timeRemained;
   extern int action;
-
-  //  LiquidCrystal_I2C lcd(0x27,20,4);  // set the LCD address to 0x27 for a 16 chars and 2 line display
-  //  lcd.init();
-  //  lcd.backlight();
 
   //action=1, display avaliable and green light.
   //action=2, display temporarily out and blue light.
@@ -22,7 +18,7 @@ void lcddisplay() {
   //action=6, display "Card is registered."
   //action=7, display "NOT Right ID card"
   //action=8, display the updating the time! USED DURING THE SEAT STATUS!!!
-  
+
   if (action == 4) {
 
     lcd.clear();
@@ -58,7 +54,7 @@ void lcddisplay() {
     //int remainedMin = (timeRemained - remainedSec) / 60;
     //lcd.print("Reset in");
     lcd.print("Reset in 0:10");
-     //====Original action 2====//
+    //====Original action 2====//
     //lcd.print(remainedMin);
     //lcd.print(":");
     //lcd.print(remainedSec-remainedSec%10); // UI fix by fruit
@@ -67,30 +63,30 @@ void lcddisplay() {
     lcd.setCursor(0, 0);
     lcd.print("Right ID card");
     lcd.setCursor(0, 1);
-    lcd.print("                "); //clean all by fruit
+    lcd.print("                ");
   } else if (action == 6) {
     lcd.setCursor(0, 0);
     lcd.print("Card registered.");
     lcd.setCursor(0, 1);
-    lcd.print("                "); //clean all by fruit
+    lcd.print("                ");
   } else if (action == 7) {
     lcd.setCursor(0, 0);
     lcd.print("Wrong ID card");
     lcd.setCursor(0, 1);
-    lcd.print("                "); //clean all by fruit
+    lcd.print("                ");
   } else if (action == 7) {
     lcd.setCursor(0, 0);
     lcd.print("Wrong ID card");
     lcd.setCursor(0, 1);
-    lcd.print("                "); //clean all by fruit
-  } else if (action == 8) { // display the updating the time
+    lcd.print("                ");
+  } else if (action == 8) {
     lcd.setCursor(9, 1);
     int remainedSec = timeRemained % 60;
     int remainedMin = (timeRemained - remainedSec) / 60;
     lcd.print(remainedMin);
     lcd.print(":");
-    lcd.print(remainedSec-remainedSec%10); // UI fix by fruit
-    lcd.print(remainedSec%10); // UI fix by fruit
+    lcd.print(remainedSec - remainedSec % 10);
+    lcd.print(remainedSec % 10);
   }
 
 }
