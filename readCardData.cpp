@@ -8,6 +8,7 @@
 
 void readCardData() {
   extern int seatStatus;
+  extern int timeRemained;
   extern int action;
   extern byte UIDStored[4];
   extern MFRC522 mfrc522;
@@ -60,7 +61,7 @@ void readCardData() {
     byte idSize = mfrc522.uid.size;  //get length of UID
 
     if ( seatStatus == -1) {//from "Available" to "occupied"
-      
+
       // store the UID
       for (byte i = 0; i < idSize; i++) {
         UIDStored[i] = id[i];
@@ -112,7 +113,7 @@ void readCardData() {
         LEDControl(1, 2); // red light
         action = 3;
         lcddisplay();
-
+        timeRemained = 0;
         uploadData();
 
       } // right card check

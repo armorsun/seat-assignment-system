@@ -53,7 +53,7 @@ void lcddisplay() {
     //int remainedSec = timeRemained % 60;
     //int remainedMin = (timeRemained - remainedSec) / 60;
     //lcd.print("Reset in");
-    lcd.print("Reset in 0:10");
+    lcd.print("Reset in 2:00");
     //====Original action 2====//
     //lcd.print(remainedMin);
     //lcd.print(":");
@@ -74,20 +74,13 @@ void lcddisplay() {
     lcd.print("Wrong ID card");
     lcd.setCursor(0, 1);
     lcd.print("                ");
-  } else if (action == 7) {
-    lcd.setCursor(0, 0);
-    lcd.print("Wrong ID card");
-    lcd.setCursor(0, 1);
-    lcd.print("                ");
   } else if (action == 8) {
     lcd.setCursor(9, 1);
     int remainedSec = timeRemained % 60;
     int remainedMin = (timeRemained - remainedSec) / 60;
     lcd.print(remainedMin);
     lcd.print(":");
-    lcd.print(remainedSec - remainedSec % 10);
-    lcd.print(remainedSec % 10);
+    lcd.print(remainedSec);
   }
-
 }
 

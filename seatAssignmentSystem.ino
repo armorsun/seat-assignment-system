@@ -73,11 +73,15 @@ void loop() {
     if (millisElapsed < 10000) { // 10000 the for debugging ; actually 1800000
       Serial.print("Milliseconds elapsed: ");
       Serial.println(millisElapsed);
-
-      timeRemained = timeRemained - millisElapsed / 1000; // automatically calculated as integer.
+      Serial.print("timeRemained: ");
+      Serial.println(timeRemained);
+      Serial.print("round(millisElapsed/1000): ");
+      Serial.println(round(millisElapsed/1000));
+      if(timeRemained != timeRemained - round(millisElapsed/1000)) {
+      timeRemained = timeRemained - round(millisElapsed/1000); // automatically calculated as integer.
       action = 8;
       lcddisplay();
-
+      }
     } else if (millisElapsed >= 10000) {
       Serial.print("TIME'S UP!");
       resetAll();

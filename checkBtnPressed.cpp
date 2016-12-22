@@ -26,12 +26,12 @@ void checkBtnPressed() {
       seatStatus = 0;       //1. set seatStatus temporarily out,
       LEDControl(0, 2);     //2. turn on blue LED,
       LEDControl(1, 0);     //3. turn off red LED!
-      timeRemained = 10;    //4. start counting down 30 mins ; in the test version, time is 10 secs.
+      action = 2;          
+      lcddisplay(); 
+      timeRemained = 120;    //4. start counting down 30 mins ; in the test version, time is 10 secs.
       uploadData();         //5. report to RPi
       millisWhenLeave = millis(); //6. record the millisecond when start countdown
-      action = 2;          
-      lcddisplay();      
-      delay(1000);
+      delay(500);
     }
   }
 }
