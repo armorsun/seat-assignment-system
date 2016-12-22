@@ -53,7 +53,7 @@ void lcddisplay() {
     //int remainedSec = timeRemained % 60;
     //int remainedMin = (timeRemained - remainedSec) / 60;
     //lcd.print("Reset in");
-    lcd.print("Reset in 2:00");
+    lcd.print("Reset in 0:10");
     //====Original action 2====//
     //lcd.print(remainedMin);
     //lcd.print(":");
