@@ -84,6 +84,7 @@ void loop() {
       }
     } else if (millisElapsed >= 10000) {
       Serial.print("TIME'S UP!");
+      timeRemained = 0;
       resetAll();
     }
   }
