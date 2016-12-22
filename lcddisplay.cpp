@@ -80,7 +80,8 @@ void lcddisplay() {
     int remainedMin = (timeRemained - remainedSec) / 60;
     lcd.print(remainedMin);
     lcd.print(":");
-    lcd.print(remainedSec);
+    lcd.print((remainedSec-remainedSec%10)/10);
+    lcd.print(remainedSec%10);
   }
 }
 

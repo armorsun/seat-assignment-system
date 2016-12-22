@@ -28,7 +28,7 @@ void checkBtnPressed() {
       LEDControl(1, 0);     //3. turn off red LED!
       action = 2;          
       lcddisplay(); 
-      timeRemained = 120;    //4. start counting down 30 mins ; in the test version, time is 10 secs.
+      timeRemained = 10;    //4. start counting down 30 mins ; in the test version, time is 10 secs.
       uploadData();         //5. report to RPi
       millisWhenLeave = millis(); //6. record the millisecond when start countdown
       delay(500);

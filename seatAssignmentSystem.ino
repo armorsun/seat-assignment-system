@@ -77,8 +77,8 @@ void loop() {
       Serial.println(timeRemained);
       Serial.print("round(millisElapsed/1000): ");
       Serial.println(round(millisElapsed/1000));
-      if(timeRemained != timeRemained - round(millisElapsed/1000)) {
-      timeRemained = timeRemained - round(millisElapsed/1000); // automatically calculated as integer.
+      if(timeRemained != 10 - round(millisElapsed/1000)) {
+      timeRemained = 10 - round(millisElapsed/1000); // automatically calculated as integer.
       action = 8;
       lcddisplay();
       }
