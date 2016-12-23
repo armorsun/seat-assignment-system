@@ -14,9 +14,8 @@ extern int action;
 void checkBtnPressed() {
 
   pinMode(BTNPIN, INPUT);
-  int buttonState = digitalRead(BTNPIN);
 
-  if (buttonState == HIGH) {
+  if (digitalRead(BTNPIN) == HIGH) {
 
     if (seatStatus == -1 || seatStatus == 0) {
       //if seat avaliable or temporarily out, do nothing,
