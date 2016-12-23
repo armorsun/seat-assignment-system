@@ -70,7 +70,7 @@ void loop() {
 
   if (seatStatus == 0) {
     millisElapsed = millis() - millisWhenLeave;
-    if (millisElapsed < 1000) { // 10000 the for debugging ; actually 1800000
+    if (millisElapsed < 10000) { // 10000 the for debugging ; actually 1800000
       Serial.print("Milliseconds elapsed: ");
       Serial.println(millisElapsed);
       Serial.print("timeRemained: ");
@@ -83,7 +83,7 @@ void loop() {
         action = 8;
         lcddisplay();
 
-      } else if (millisElapsed >= 1000) {
+      } else if (millisElapsed >= 10000) {
         Serial.print("TIME'S UP!");
         timeRemained = 0;
         resetAll();
