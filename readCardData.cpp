@@ -65,8 +65,10 @@ void readCardData() {
       // store the UID
       for (byte i = 0; i < idSize; i++) {
         UIDStored[i] = id[i];
+        Serial.println(uint8_t(UIDStored[i]));
       }
-
+  
+      Serial.println();
       action = 6;
       lcddisplay(); // "The card is registered."
       LEDControl(-1, 1); // flashing green and delay 1.5s
