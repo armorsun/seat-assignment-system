@@ -73,16 +73,23 @@ void loop() {
     if (millisElapsed < 10000) { // 10000 the for debugging ; actually 1800000
       Serial.print("Milliseconds elapsed: ");
       Serial.println(millisElapsed);
+      Serial.print("timeRemained: ");
+      Serial.println(timeRemained);
+      Serial.print("round(millisElapsed/1000): ");
+      Serial.println(round(millisElapsed / 1000));
 
-      timeRemained = timeRemained - millisElapsed / 1000; // automatically calculated as integer.
-      action = 8;
-      lcddisplay();
+      if (timeRemained != 10 - round(millisElapsed / 1000)) {
+        timeRemained--; // automatically calculated as integer.
+        action = 8;
+        lcddisplay();
 
+      }
     } else if (millisElapsed >= 10000) {
       Serial.print("TIME'S UP!");
       resetAll();
     }
   }
+
   checkCardPlaced();
 }
 
@@ -105,3 +112,4 @@ boolean WiFiConnected() {
     return false;
   }
 }
+

@@ -8,6 +8,7 @@
 
 void readCardData() {
   extern int seatStatus;
+  extern int timeRemained;
   extern int action;
   extern byte UIDStored[4];
   extern MFRC522 mfrc522;
@@ -64,8 +65,10 @@ void readCardData() {
       // store the UID
       for (byte i = 0; i < idSize; i++) {
         UIDStored[i] = id[i];
+        Serial.println(uint8_t(UIDStored[i]));
       }
-
+  
+      Serial.println();
       action = 6;
       lcddisplay(); // "The card is registered."
       LEDControl(-1, 1); // flashing green and delay 1.5s
@@ -83,7 +86,7 @@ void readCardData() {
 
       //==== trouble processing 3 of "Away": "wrong Card." ====//
       // if same == 1, the UIDread is same as Stored one.
-      boolean same = !((UIDStored[1] - id[1]) || (UIDStored[2] - id[2]) || (UIDStored[3] - id[3]) || (UIDStored[4] - id[4]));
+      boolean same = !((UIDStored[1] - id[1])&&(UIDStored[2] - id[2])&&(UIDStored[3] - id[3])&&(UIDStored[4] - id[4]));
 
       if (same == false) { // not right card,flash red light and do nothing.
         LEDControl(0, 0);
@@ -105,22 +108,21 @@ void readCardData() {
         LEDControl(0, 0); // turn off blue light
         action = 5;
         lcddisplay();
+        LEDControl(-1, 1); // flashing green for1.5s.
+        LEDControl(-1, 1);
 
         //actuators be back into original states
 
-        seatStatus = -1 ; // the state changed into occupied
+        seatStatus = 1 ; // the state changed into occuppied
         LEDControl(1, 2); // red light
         action = 3;
         lcddisplay();
-
+        timeRemained = 0;
         uploadData();
 
       } // right card check
     } //seatStatus == 0
   } // rfidValid == 1
-  //seatStatus == 0 or 1.
-  //mfrc522.PICC_HaltA();
-  // halt the card to prevent mfrc522.PICC_IsNewCardPresent() error.
 } // whole fuction
 
 

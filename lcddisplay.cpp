@@ -74,20 +74,14 @@ void lcddisplay() {
     lcd.print("Wrong ID card");
     lcd.setCursor(0, 1);
     lcd.print("                ");
-  } else if (action == 7) {
-    lcd.setCursor(0, 0);
-    lcd.print("Wrong ID card");
-    lcd.setCursor(0, 1);
-    lcd.print("                ");
   } else if (action == 8) {
     lcd.setCursor(9, 1);
     int remainedSec = timeRemained % 60;
     int remainedMin = (timeRemained - remainedSec) / 60;
     lcd.print(remainedMin);
     lcd.print(":");
-    lcd.print(remainedSec - remainedSec % 10);
-    lcd.print(remainedSec % 10);
+    lcd.print((remainedSec-remainedSec%10)/10);
+    lcd.print(remainedSec%10);
   }
-
 }
 
