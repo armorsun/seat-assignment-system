@@ -60,7 +60,7 @@ void readCardData() {
     byte idSize = mfrc522.uid.size;  //get length of UID
 
     if ( seatStatus == -1) {//from "Available" to "occupied"
-      
+
       // store the UID
       for (byte i = 0; i < idSize; i++) {
         UIDStored[i] = id[i];
@@ -85,7 +85,7 @@ void readCardData() {
       // if same == 1, the UIDread is same as Stored one.
       boolean same = !((UIDStored[1] - id[1]) || (UIDStored[2] - id[2]) || (UIDStored[3] - id[3]) || (UIDStored[4] - id[4]));
 
-      if (same == false) { // not right card.flash red light and do nothing.
+      if (same == false) { // not right card,flash red light and do nothing.
         LEDControl(0, 0);
         action = 7;
         lcddisplay();
