@@ -48,7 +48,6 @@ void readCardData() {
       LEDControl(0, 2); // blue light
       action = 2;
       lcddisplay();
-      // with problem : what if the man insert an invalid card in 00:01?
 
     } else { //available
       LEDControl(-1, 2); // green light

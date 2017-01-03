@@ -12,7 +12,7 @@ void checkCardPlaced() {
   extern int seatStatus; //access to global variable.
 
   pinMode(PhotoInterrupter, INPUT);
-  Serial.println(analogRead(PhotoInterrupter));
+//  Serial.println(analogRead(PhotoInterrupter));
 
   //Serial.println(digitalRead(PhotoInterrupter)); // <- for debuging
   //Resistance of LED should be about 330ohm.

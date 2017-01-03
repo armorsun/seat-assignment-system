@@ -3,6 +3,7 @@
 #include <LiquidCrystal_I2C.h>
 #include "LEDControl.h"
 #include "lcddisplay.h"
+#include "uploadData.h"
 
 extern int seatStatus;
 extern int timeRemained;
@@ -22,6 +23,7 @@ void resetAll() {
   lcddisplay();
   millisElapsed = 0;
   millisWhenLeave = 0;
+  uploadData();
 
 }
 

@@ -71,12 +71,12 @@ void loop() {
   if (seatStatus == 0) {
     millisElapsed = millis() - millisWhenLeave;
     if (millisElapsed < 10000) { // 10000 the for debugging ; actually 1800000
-      Serial.print("Milliseconds elapsed: ");
-      Serial.println(millisElapsed);
-      Serial.print("timeRemained: ");
-      Serial.println(timeRemained);
-      Serial.print("round(millisElapsed/1000): ");
-      Serial.println(round(millisElapsed / 1000));
+//      Serial.print("Milliseconds elapsed: ");
+//      Serial.println(millisElapsed);
+//      Serial.print("timeRemained: ");
+//      Serial.println(timeRemained);
+//      Serial.print("round(millisElapsed/1000): ");
+//      Serial.println(round(millisElapsed / 1000));
 
       if (timeRemained != 10 - round(millisElapsed / 1000)) {
         timeRemained--; // automatically calculated as integer.
@@ -87,7 +87,6 @@ void loop() {
     } else if (millisElapsed >= 10000) {
       Serial.print("TIME'S UP!");
       resetAll();
-      uploadData();
     }
   }
 
