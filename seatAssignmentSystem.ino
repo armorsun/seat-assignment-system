@@ -87,6 +87,7 @@ void loop() {
     } else if (millisElapsed >= 10000) {
       Serial.print("TIME'S UP!");
       resetAll();
+      uploadData();
     }
   }
 
